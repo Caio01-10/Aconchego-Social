@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block title %}Cadastrar Doação — Aconchego Social{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Cadastrar Nova Doação</h2>
+    <p>Preencha as informações abaixo para registrar um novo item no sistema.</p>
+
+    <form action="{{ url_for('cadastrar') }}" method="POST" style="margin-top: 1.5rem;">
+        
+        <div class="form-group">
+            <label for="item">Item / Descrição da Doação (*):</label>
+            <input type="text" id="item" name="item" placeholder="Ex: Cesta Básica 10kg, Casaco Infantil" required>
+        </div>
+
+        <div class="form-group">
+            <label for="categoria">Categoria do Item (*):</label>
+            <select id="categoria" name="categoria" required>
+                <option value="">-- Selecione uma Categoria --</option>
+                <option value="Brinquedo">Brinquedo</option>
+                <option value="Roupa">Roupa / Vestuário</option>
+                <option value="Alimento">Alimento / Cesta Básica</option>
+                <option value="Higiene">Item de Higiene</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="detalhes">Detalhes / Observações (Opcional):</label>
+            <input type="text" id="detalhes" name="detalhes" placeholder="Ex: Tamanho M, Validade 12/2026, Em bom estado">
+        </div>
+
+        <div class="form-group">
+            <label for="quantidade">Quantidade (*):</label>
+            <input type="number" id="quantidade" name="quantidade" min="1" value="1" required>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Status da Doação (*):</label>
+            <select id="status" name="status" required>
+                <option value="Pendente">🟡 Pendente (Aguardando doador)</option>
+                <option value="Recebido">🟢 Recebido (No abrigo)</option>
+                <option value="Entregue">🔵 Entregue (Distribuído ao beneficiário)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="abrigo_id">Abrigo / Ponto de Acolhimento Destino (*):</label>
+            <select id="abrigo_id" name="abrigo_id" required>
+                <option value="">-- Selecione o Abrigo --</option>
+                {% for abrigo in abrigos %}
+                    <option value="{{ abrigo.id }}">{{ abrigo.nome }} ({{ abrigo.cidade }})</option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <button type="submit" class="btn">💾 Salvar Doação</button>
+    </form>
+</section>
+{% endblock %}

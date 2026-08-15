@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+
+{% block title %}Consultar Doações — Aconchego Social{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Consulta de Doações Cadastradas</h2>
+
+    <!-- Formulário de Busca/Filtro -->
+    <form action="{{ url_for('consultar') }}" method="GET" style="margin-bottom: 2rem; display: flex; gap: 10px; align-items: flex-end;">
+        <div style="flex: 1;">
+            <label for="busca">Filtrar por Item, Categoria ou Abrigo:</label>
+            <input type="text" id="busca" name="busca" value="{{ busca }}" placeholder="Digite o que deseja buscar...">
+        </div>
+        <button type="submit" class="btn">🔍 Buscar</button>
+        {% if busca %}
+            <a href="{{ url_for('consultar') }}" class="btn" style="background-color: #6B7280; text-decoration: none;">Limpar</a>
+        {% endif %}
+    </form>
+
+    <!-- Tabela Acessível -->
+    <div class="table-responsive">
+        <table>
+            <caption>Relação de itens e suprimentos registrados no sistema</caption>
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Item / Descrição</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Detalhes</th>
+                    <th scope="col">Qtd</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Abrigo</th>
+                    <th scope="col">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% if doacoes %}
+                    {% for d in doacoes %}
+                    <tr>
+                        <td>{{ d.id }}</td>
+                        <td><strong>{{ d.item }}</strong></td>
+                        <td>{{ d.categoria }}</td>
+                        <td>{{ d.detalhes or '-' }}</td>
+                        <td>{{ d.quantidade }}</td>
+                        <td>{{ d.status }}</td>
+                        <td>{{ d.abrigo_nome }}</td>
+                        <td style="display: flex; gap: 5px;">
+                            <a href="{{ url_for('editar', id=d.id) }}" class="btn" style="background-color: #2563EB; font-size: 0.85rem; padding: 6px 10px;">✏️ Editar</a>
+                            
+                            <!-- Formulário para Exclusão com confirmação JS -->
+                            <form action="{{ url_for('excluir', id=d.id) }}" method="POST" onsubmit="return confirm('⚠️ Tem certeza que deseja excluir a doação \'{{ d.item }}\'?');">
+                                <button type="submit" class="btn btn-danger" style="font-size: 0.85rem; padding: 6px 10px;">🗑️ Excluir</button>
+                            </form>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                {% else %}
+                    <tr>
+                        <td colspan="8" style="text-align: center; padding: 2rem;">
+                            Nenhum registro de doação encontrado.
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Editar Doação — Aconchego Social{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Editar Doação #{{ doacao.id }}</h2>
+    <p>Modifique as informações necessárias abaixo e clique em Salvar Alterações.</p>
+
+    <form action="{{ url_for('editar', id=doacao.id) }}" method="POST" style="margin-top: 1.5rem;">
+        
+        <div class="form-group">
+            <label for="item">Item / Descrição da Doação (*):</label>
+            <input type="text" id="item" name="item" value="{{ doacao.item }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="categoria">Categoria do Item (*):</label>
+            <select id="categoria" name="categoria" required>
+                <option value="Brinquedo" {% if doacao.categoria == 'Brinquedo' %}selected{% endif %}>Brinquedo</option>
+                <option value="Roupa" {% if doacao.categoria == 'Roupa' %}selected{% endif %}>Roupa / Vestuário</option>
+                <option value="Alimento" {% if doacao.categoria == 'Alimento' %}selected{% endif %}>Alimento / Cesta Básica</option>
+                <option value="Higiene" {% if doacao.categoria == 'Higiene' %}selected{% endif %}>Item de Higiene</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="detalhes">Detalhes / Observações:</label>
+            <input type="text" id="detalhes" name="detalhes" value="{{ doacao.detalhes }}">
+        </div>
+
+        <div class="form-group">
+            <label for="quantidade">Quantidade (*):</label>
+            <input type="number" id="quantidade" name="quantidade" min="1" value="{{ doacao.quantidade }}" required>
+        </div>
+
+        <div class="form-group">
+            <label for="status">Status da Doação (*):</label>
+            <select id="status" name="status" required>
+                <option value="Pendente" {% if doacao.status == 'Pendente' %}selected{% endif %}>🟡 Pendente (Aguardando doador)</option>
+                <option value="Recebido" {% if doacao.status == 'Recebido' %}selected{% endif %}>🟢 Recebido (No abrigo)</option>
+                <option value="Entregue" {% if doacao.status == 'Entregue' %}selected{% endif %}>🔵 Entregue (Distribuído ao beneficiário)</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="abrigo_id">Abrigo / Ponto de Acolhimento Destino (*):</label>
+            <select id="abrigo_id" name="abrigo_id" required>
+                {% for abrigo in abrigos %}
+                    <option value="{{ abrigo.id }}" {% if abrigo.id == doacao.abrigo_id %}selected{% endif %}>
+                        {{ abrigo.nome }} ({{ abrigo.cidade }})
+                    </option>
+                {% endfor %}
+            </select>
+        </div>
+
+        <div style="display: flex; gap: 10px;">
+            <button type="submit" class="btn">💾 Salvar Alterações</button>
+            <a href="{{ url_for('consultar') }}" class="btn" style="background-color: #6B7280; text-decoration: none;">Cancelar</a>
+        </div>
+    </form>
+</section>
+{% endblock %}

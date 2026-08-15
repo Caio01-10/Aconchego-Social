@@ -1,0 +1,187 @@
+/* Variáveis para consistência e alto contraste (WCAG 4.5:1+) */
+:root {
+    --bg-color: #FAF9F5;
+    --text-color: #111827;
+    --primary-color: #065F46;   /* Verde Escuro com alto contraste */
+    --primary-hover: #047857;
+    --focus-ring: #0284C7;      /* Azul visível para foco por teclado */
+    --danger-color: #991B1B;     /* Vermelho escuro para alertas/exclusão */
+    --card-bg: #FFFFFF;
+    --border-color: #D1D5DB;
+}
+
+/* Reset básico e tipografia */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.6;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Indicador Visível de Foco para Navegação por Teclado */
+a:focus, button:focus, input:focus, select:focus, textarea:focus {
+    outline: 3px solid var(--focus-ring) !important;
+    outline-offset: 2px;
+}
+
+/* Cabeçalho Semântico */
+header {
+    background-color: var(--primary-color);
+    color: #FFFFFF;
+    padding: 1rem 2rem;
+}
+
+header h1 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Menu de Navegação */
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+nav a {
+    color: #FFFFFF;
+    text-decoration: underline;
+    font-weight: bold;
+    padding: 8px 12px;
+    display: inline-block;
+    min-height: 44px; /* Tamanho mínimo clicável (WCAG) */
+    display: inline-flex;
+    align-items: center;
+}
+
+nav a:hover {
+    background-color: var(--primary-hover);
+    border-radius: 4px;
+}
+
+/* Container Principal */
+main {
+    max-width: 1000px;
+    width: 90%;
+    margin: 2rem auto;
+    flex: 1;
+}
+
+/* Tabelas Acessíveis */
+.table-responsive {
+    overflow-x: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    background-color: var(--card-bg);
+}
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    text-align: left;
+}
+
+th {
+    background-color: #E5E7EB;
+    color: var(--text-color);
+    font-weight: bold;
+}
+
+tr:nth-child(even) {
+    background-color: #F3F4F6;
+}
+
+/* Formulários */
+.form-group {
+    margin-bottom: 1.2rem;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+}
+
+input[type="text"],
+input[type="number"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    min-height: 44px; /* Área de toque/clique de 44px */
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #FFFFFF;
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    min-height: 44px;
+    min-width: 44px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn:hover {
+    background-color: var(--primary-hover);
+}
+
+.btn-danger {
+    background-color: var(--danger-color);
+}
+
+.btn-danger:hover {
+    background-color: #7F1D1D;
+}
+
+/* Mensagens de Alerta (Não dependem apenas de cor) */
+.alert {
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    font-weight: bold;
+}
+
+.alert-sucesso {
+    background-color: #D1FAE5;
+    color: #065F46;
+    border: 1px solid #10B981;
+}
+
+.alert-erro {
+    background-color: #FEE2E2;
+    color: #991B1B;
+    border: 1px solid #EF4444;
+}
+
+/* Rodapé */
+footer {
+    background-color: #1F2937;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 1.5rem;
+    margin-top: 2rem;
+}

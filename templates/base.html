@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Aconchego Social{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+    <!-- Cabeçalho e Menu Semântico -->
+    <header role="banner">
+        <h1>🕊️ Aconchego Social</h1>
+        <p>Plataforma de Gestão de Doações para Casas de Acolhimento</p>
+        
+        <nav aria-label="Navegação Principal">
+            <ul>
+                <li><a href="{{ url_for('index') }}">Início (Home)</a></li>
+                <li><a href="{{ url_for('consultar') }}">Consultar / Listar Doações</a></li>
+                <li><a href="{{ url_for('cadastrar') }}">Cadastrar Nova Doação</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Conteúdo Principal -->
+    <main id="main-content" role="main">
+        <!-- Bloco para exibição de mensagens/alertas -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="alert alert-{{ category }}" role="alert">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Rodapé Semântico -->
+    <role footer role="contentinfo">
+        <footer>
+            <p>&copy; 2026 Aconchego Social — Sistema Acessível desenvolvido para o Trabalho de Banco de Dados.</p>
+        </footer>
+    </role>
+
+</body>
+</html>

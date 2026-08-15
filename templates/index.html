@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block title %}Início — Aconchego Social{% endblock %}
+
+{% block content %}
+<section>
+    <h2>Bem-vindo ao Aconchego Social</h2>
+    <p>
+        O <strong>Aconchego Social</strong> é um sistema dedicado a centralizar e organizar o registro de doações 
+        (brinquedos, roupas, alimentos) destinadas a centros e casas de acolhimento parceiras.
+    </p>
+
+    <h3>O que você deseja fazer?</h3>
+    <ul style="margin-top: 1rem; margin-left: 1.5rem; line-height: 2;">
+        <li>
+            <a href="{{ url_for('cadastrar') }}"><strong>Registrar uma nova doação:</strong></a> Cadastre itens recebidos ou necessários, associando-os a um abrigo específico.
+        </li>
+        <li>
+            <a href="{{ url_for('consultar') }}"><strong>Consultar o acervo de doações:</strong></a> Visualize a lista completa, busque por termos específicos, atualize o status ou remova registros.
+        </li>
+    </ul>
+</section>
+{% endblock %}
