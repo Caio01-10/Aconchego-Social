@@ -68,3 +68,4 @@ Aconchego-Social/
     ├── cadastrar.html      # Formulário de cadastro (Create)
     ├── consultar.html      # Tabela de listagem e busca (Read & Delete)
     └── editar.html         # Formulário de atualização (Update)
+.
