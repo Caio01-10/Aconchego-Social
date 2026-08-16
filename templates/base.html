@@ -8,6 +8,9 @@
 </head>
 <body>
 
+    <!-- Link acessível para pular direto para o conteúdo via Teclado -->
+    <a href="#main-content" class="skip-link">Pular para o conteúdo principal</a>
+
     <!-- Cabeçalho e Menu Semântico -->
     <header role="banner">
         <h1>🕊️ Aconchego Social</h1>
@@ -23,8 +26,7 @@
     </header>
 
     <!-- Conteúdo Principal -->
-    <main id="main-content" role="main">
-        <!-- Bloco para exibição de mensagens/alertas -->
+    <main id="main-content" role="main" tabindex="-1">
         {% with messages = get_flashed_messages(with_categories=true) %}
             {% if messages %}
                 {% for category, message in messages %}
@@ -38,12 +40,9 @@
         {% block content %}{% endblock %}
     </main>
 
-    <!-- Rodapé Semântico -->
-    <role footer role="contentinfo">
-        <footer>
-            <p>&copy; 2026 Aconchego Social — Sistema Acessível desenvolvido para o Trabalho de Banco de Dados.</p>
-        </footer>
-    </role>
+    <footer role="contentinfo">
+        <p>&copy; 2026 Aconchego Social — Sistema Acessível desenvolvido para o Trabalho de Banco de Dados.</p>
+    </footer>
 
 </body>
 </html>
