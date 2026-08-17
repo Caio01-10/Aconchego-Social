@@ -58,7 +58,7 @@ A interface foi projetada para garantir a melhor usabilidade para todos os públ
 Aconchego-Social/
 ├── app.py                  # Servidor Flask e definição de rotas do CRUD
 ├── banco.db                # Banco de dados relacional SQLite
-├── criar_banco.py          # Script SQL para criação das tabelas e carga inicial
+├── model.py          # Script SQL para criação das tabelas e carga inicial
 ├── static/
 │   └── css/
 │       └── style.css       # Estilização global com regras de acessibilidade
